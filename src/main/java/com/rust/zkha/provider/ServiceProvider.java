@@ -33,7 +33,8 @@ public class ServiceProvider {
 
 	 private CountDownLatch latch = new CountDownLatch(1);
 
-	 /**
+
+	/**
 	  * 发布 RMI服务并注册 RMI 地址到ZooKeeper 中
 	  */
 	 public void publish(Remote remote, String host, int port) {
@@ -50,8 +51,11 @@ public class ServiceProvider {
 		 try {
 			 byte[] data = url.getBytes();
 			 String path = null;
-			 if (zk.exists(Constant.ZK_PROVIDER_PATH,false)==null) {
-				 path = zk.create(Constant.ZK_PROVIDER_PATH, data, Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+			 if (zk.exists("/"+Constant.ZK_REGISTRY_PATH,false)==null) {
+				 zk.create("/"+Constant.ZK_REGISTRY_PATH, null, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+			 }
+			 if (zk.exists("/"+Constant.ZK_REGISTRY_PATH+"/"+Constant.ZK_PROVIDER_PATH,false)==null) {
+				 path = zk.create("/"+Constant.ZK_REGISTRY_PATH+"/"+Constant.ZK_PROVIDER_PATH, data, Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 			 }
 			 LOGGER.debug("create zookeeper node ({} => {})", path, url);
 		 } catch (KeeperException | InterruptedException e) {

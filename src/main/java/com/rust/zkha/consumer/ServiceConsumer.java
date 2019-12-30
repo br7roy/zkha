@@ -85,7 +85,7 @@ public class ServiceConsumer {
 	// 观察 /registry 节点下所有子节点是否有变化
 	private void watchNode(final ZooKeeper zk) {
 		try {
-			List<String> nodeList = zk.getChildren(Constant.ZK_REGISTRY_PATH, new Watcher() {
+			List<String> nodeList = zk.getChildren("/"+Constant.ZK_REGISTRY_PATH, new Watcher() {
 				@Override
 				public void process(WatchedEvent event) {
 					if (event.getType() == Event.EventType.NodeChildrenChanged) {
@@ -95,7 +95,7 @@ public class ServiceConsumer {
 			});
 			List<String> dataList = new ArrayList<>(); // 用于存放 /registry 所有子节点中的数据
 			for (String node : nodeList) {
-				byte[] data = zk.getData(Constant.ZK_REGISTRY_PATH + "/" + node, false, null); // 获取 /registry 的子节点中的数据
+				byte[] data = zk.getData("/"+Constant.ZK_REGISTRY_PATH + "/" + node, false, null); // 获取 /registry 的子节点中的数据
 				dataList.add(new String(data));
 			}
 			LOGGER.debug("node data: {}", dataList);
