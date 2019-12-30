@@ -49,7 +49,10 @@ public class ServiceProvider {
 	 private void createZNode(ZooKeeper zk, String url) {
 		 try {
 			 byte[] data = url.getBytes();
-			 String path = zk.create(Constant.ZK_PROVIDER_PATH, data, Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+			 String path = null;
+			 if (zk.exists(Constant.ZK_PROVIDER_PATH,false)==null) {
+				 path = zk.create(Constant.ZK_PROVIDER_PATH, data, Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+			 }
 			 LOGGER.debug("create zookeeper node ({} => {})", path, url);
 		 } catch (KeeperException | InterruptedException e) {
 			 e.printStackTrace();
