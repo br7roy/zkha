@@ -1,34 +1,34 @@
- /*
-  * Package com.rust
-  * FileName: ServiceProvider
-  * Author:   Takho
-  * Date:     18/11/30 0:46
-  */
- package com.rust.zkha.provider;
+/*
+ * Package com.rust
+ * FileName: ServiceProvider
+ * Author:   Takho
+ * Date:     18/11/30 0:46
+ */
+package com.rust.zkha.provider;
 
- import com.rust.zkha.Constant;
- import org.apache.zookeeper.CreateMode;
- import org.apache.zookeeper.KeeperException;
- import org.apache.zookeeper.WatchedEvent;
- import org.apache.zookeeper.Watcher;
- import org.apache.zookeeper.Watcher.Event.KeeperState;
- import org.apache.zookeeper.ZooDefs.Ids;
- import org.apache.zookeeper.ZooKeeper;
- import org.slf4j.Logger;
- import org.slf4j.LoggerFactory;
+import com.rust.zkha.Constant;
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.Watcher.Event.KeeperState;
+import org.apache.zookeeper.ZooDefs.Ids;
+import org.apache.zookeeper.ZooKeeper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
- import java.io.IOException;
- import java.net.MalformedURLException;
- import java.rmi.Naming;
- import java.rmi.Remote;
- import java.rmi.RemoteException;
- import java.rmi.registry.LocateRegistry;
- import java.util.concurrent.CountDownLatch;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.util.concurrent.CountDownLatch;
 
- /**
-  * @author Takho
-  */
- public class ServiceProvider {
+/**
+ * @author Takho
+ */
+public class ServiceProvider {
 	 private static final Logger LOGGER = LoggerFactory.getLogger(ServiceProvider.class);
 
 	 private CountDownLatch latch = new CountDownLatch(1);
@@ -98,4 +98,4 @@
 	 }
 
 
- }
+}
